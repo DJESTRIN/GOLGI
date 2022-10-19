@@ -3,12 +3,17 @@
 import os,glob
 import pandas as pd
 import numpy as np
+import xlrd
 
+"""concatXLS class: loads data from xls files with similar sheets and concatonates the data
+    output for each sheet name will be seperate xls file. """
 class concatXLS:
-    def __init__(self, sheet_length):
-        self.sheet_length=sheet_length #save the sheet names as a variable
+    def __init__(self, excelfile_oh):
+        xls = xlrd.open_workbook(excelfile_oh, on_demand=True)
+        self.sheet_names=xls.sheet_names()
+        print(self.sheet_names)
         self.all_xls={}
-        for u in range(self.sheet_length):
+        for u in self.sheet_names:
             self.all_xls[u]=pd.DataFrame()
         self.counter=0
 
@@ -23,9 +28,9 @@ class concatXLS:
             print("error with filename:" + excelfile_oh)
         
         # Add the data to sheet dataframe
-        for sheet in range(self.sheet_length):
+        for sheet in self.sheet_names:
             try:
-                df_oh=pd.read_excel(xls,'Neuron Summary')
+                df_oh=pd.read_excel(xls,sheet)
                 
                 #Add animal info to data
                 df_animalinfo=pd.DataFrame({'cage':np.repeat(cage,df_oh.shape[0],0),
@@ -43,19 +48,39 @@ class concatXLS:
     def output_data(self,output_directory):
         try:
             os.chdir(output_directory)
-            for u in range(self.sheet_length):
-                string='Neuron Summary'+".xlsx"
+            for u in self.sheet_names:
+                string=u+".xlsx"
                 self.all_xls[u].to_excel(string)
             
         except:
             print("error with saving")
-        
+            
+            
+            
+""" CONCATENATE CELL BODY DATA"""
 os.chdir('F:\\LISTON_LAB\\DENDRITIC_SPINE_PROJECT\\neurolucida_anlaysis_golgi\\neurolucida_generated_data\\cellbody\\')
-data=concatXLS(1)
+xls_files=glob.glob('*xls*')
+data=concatXLS(xls_files[0])
         
 for excelfile_oh in glob.glob('*xls*'):
     print(excelfile_oh)
     data.add_data(excelfile_oh)
 
-data.output_data('F:\\LISTON_LAB\\DENDRITIC_SPINE_PROJECT\\neurolucida_anlaysis_golgi\\neurolucida_generated_data\\output\\')
+data.output_data('F:\\LISTON_LAB\\DENDRITIC_SPINE_PROJECT\\neurolucida_anlaysis_golgi\\neurolucida_generated_data\\output\\cellbody\\')
+
+
+""" CONCATENATE DENDRITE DATA """
+os.chdir('F:\\LISTON_LAB\\DENDRITIC_SPINE_PROJECT\\neurolucida_anlaysis_golgi\\neurolucida_generated_data\\dendrites\\')
+xls_files=glob.glob('*xls*')
+data=concatXLS(xls_files[0])
         
+for excelfile_oh in glob.glob('*xls*'):
+    print(excelfile_oh)
+    data.add_data(excelfile_oh)
+
+data.output_data('F:\\LISTON_LAB\\DENDRITIC_SPINE_PROJECT\\neurolucida_anlaysis_golgi\\neurolucida_generated_data\\output\\dendrites\\')
+        
+
+
+
+
