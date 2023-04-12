@@ -22,11 +22,11 @@ level = tiles.level_count
 
 #combining levels into one
 ipdb.set_trace()
-tiles = np.array(tiles)              # NOT SURE IF WORKS
-tiles = np.max(tiles, axis=level)
+#tiles = np.array(tiles)              # NOT SURE IF WORKS
+#tiles = np.max(tiles, axis=level)
 
 level = tiles.level_count - 1
-cols, rows = tiles.level_tiles[level]
+cols, rows = tiles.level_tiles[1]
 
 os.path.split(file)
 parent_dir, filename=os.path.split(file)
