@@ -30,7 +30,7 @@ cols, rows = tiles.level_tiles[1]
 
 os.path.split(file)
 parent_dir, filename=os.path.split(file)
-new_dir = parent_dir + "tiled_images"
+new_dir = parent_dir + "/" + "tiled_images"
 tile_dir = os.mkdir(new_dir)
 
 for row in range(rows):
