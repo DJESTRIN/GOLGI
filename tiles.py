@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 #from PIL import Image
 import numpy as np
 from skimage.color import rgb2gray
+import ipdb
 
 #user inputs a file
 file = input("Enter file name: ")    # TO BE CHANGED
@@ -20,6 +21,7 @@ tiles = DeepZoomGenerator(slide, tile_size=500, overlap=0, limit_bounds=False)
 level = tiles.level_count
 
 #combining levels into one
+ipdb.set_trace()
 tiles = np.array(tiles)              # NOT SURE IF WORKS
 tiles = np.max(tiles, axis=level)
 
