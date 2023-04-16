@@ -19,7 +19,8 @@ import ipdb
 # primary function for conversion
 def main(path):
     #list of files that need to be tiled
-    files = glob.glob(path + '*.mrxs')
+    files = glob.glob(path + '/*.mrxs')
+    ipdb.set_trace()
     #create new directory to add all the tiled images
     directory = "tiled_images"
     new_path = os.path.join(path, directory)
