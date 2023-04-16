@@ -26,7 +26,8 @@ def main(path):
     #create new directory to add all the tiled images
     directory = "tiled_images"
     new_path = os.path.join(path, directory)
-    os.mkdir(new_path)
+    if !(os.path.exists(new_path)):
+        os.mkdir(new_path)
 
     #iterate through all the files
     for file in files:
