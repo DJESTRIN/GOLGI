@@ -1,10 +1,8 @@
 
-#this script takes the path to the directory with all the files 
-#and then tiles all the .mrvs images in the directory
-#then it saves the tiled images into new folders organized by levels
-#also inverts the images
+"""this script takes the path to the directory with all the files and then tiles all the .mrvs images in the directory
+then it saves the tiled images into new folders organized by levels also inverts the images """
 
-
+#Import dependencies
 from openslide import open_slide
 import openslide
 from PIL import Image
@@ -14,6 +12,7 @@ import matplotlib.image as mpimg
 import os
 import glob
 from openslide.deepzoom import DeepZoomGenerator
+import tqdm
 
 #enter the path
 path = input("Enter path: ")
@@ -41,7 +40,7 @@ for file in files:
     newer_path = os.path.join(new_path, filename_final)
     os.mkdir(newer_path)
     #iterate through each level and saves tiles
-    for l in range(levels):
+    for l in tqdm.tqdm(range(levels)):
         cols, rows = tiles.level_tiles[l]
         new_path_folder = newer_path+'/level_'+str(l)
         os.mkdir(new_path_folder)
@@ -52,12 +51,15 @@ for file in files:
                 temp_tile = tiles.get_tile(l, (col, row))
                 temp_tile_RGB = temp_tile.convert('RGB')
                 temp_tile_np = np.array(temp_tile_RGB)
-                #grayscale conversion
-                R, G, B = temp_tile_np[:,:,0], temp_tile_np[:,:,1], temp_tile_np[:,:,2]
-                img_gray = 0.2989 * R + 0.5870 * G + 0.1140 * B
+                
+                # Convert to gray scale:
+                img_gray=np.mean(temp_tile_np,axis=2)
+                #R, G, B = temp_tile_np[:,:,0], temp_tile_np[:,:,1], temp_tile_np[:,:,2]   Does this work?
+                #img_gray = 0.2989 * R + 0.5870 * G + 0.1140 * B       Does this work?
+                
                 #invert image
                 img_inverted = 255 - img_gray
-                plt.imsave(tile_name + ".tiff", img_inverted)
+                plt.imsave(tile_name + ".tiff", img_inverted)   #will this down sample image?
   
 
         
