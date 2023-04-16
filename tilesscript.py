@@ -22,7 +22,6 @@ def main(path):
         path=path+"/"
     #list of files that need to be tiled
     files = glob.glob(path + '*.mrxs')
-    ipdb.set_trace()
     #create new directory to add all the tiled images
     directory = "tiled_images"
     new_path = os.path.join(path, directory)
@@ -33,6 +32,9 @@ def main(path):
     for file in files:
         #opens the file
         slide = open_slide(file)
+        ipdb.set_trace()
+        
+        smaller_region=slide.read_region((16000,16000),0,(1024,1024))
         #creates the tiles
         ipdb.set_trace()
         tiles = DeepZoomGenerator(slide, tile_size=500, overlap=0, limit_bounds=False)
