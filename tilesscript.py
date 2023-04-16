@@ -34,6 +34,7 @@ def main(path):
         #opens the file
         slide = open_slide(file)
         #creates the tiles
+        ipdb.set_trace()
         tiles = DeepZoomGenerator(slide, tile_size=500, overlap=0, limit_bounds=False)
         #finds how many levels in tiles
         levels = tiles.level_count
