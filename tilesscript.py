@@ -60,9 +60,10 @@ def main(path):
                     #invert image
                     img_inverted = 255 - img_gray
                     plt.imsave(tile_name + ".tiff", img_inverted)   #will this down sample image?
-  
+ 
 if __name__=='__main__':
-    
-        
-        
-    
+  # Command line interface
+  parser = argparse.ArgumentParser(description="Convert mrxs files to tiled tiff images")
+  parser.add_argument("--input", type=str, help="The directory containing the input mrxs files ",required=True)
+  args = parser.parse_args()
+  main(args.input)
