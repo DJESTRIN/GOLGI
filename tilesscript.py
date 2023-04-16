@@ -13,7 +13,7 @@ import os
 import glob
 from openslide.deepzoom import DeepZoomGenerator
 import tqdm
-import argparser
+import argparse
 
 # primary function for conversion
 def main(path):
