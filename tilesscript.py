@@ -18,8 +18,10 @@ import ipdb
 
 # primary function for conversion
 def main(path):
+    if path[-1]!="/":
+        path=path+"/"
     #list of files that need to be tiled
-    files = glob.glob(path + '/*.mrxs')
+    files = glob.glob(path + '*.mrxs')
     ipdb.set_trace()
     #create new directory to add all the tiled images
     directory = "tiled_images"
@@ -65,12 +67,8 @@ def main(path):
  
 if __name__=='__main__':
   # Command line interface
-  try:
-      parser = argparse.ArgumentParser(description="Convert mrxs files to tiled tiff images")
-      parser.add_argument("--input", type=str, help="The directory containing the input mrxs files ",required=True)
-      args = parser.parse_args()
-      ipdb.set_trace()
-      main(args.input)
-  except:
-      path=input("directory")
-      main(path)
+  parser = argparse.ArgumentParser(description="Convert mrxs files to tiled tiff images")
+  parser.add_argument("--input", type=str, help="The directory containing the input mrxs files ",required=True)
+  args = parser.parse_args()
+  ipdb.set_trace()
+  main(args.input)
