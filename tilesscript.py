@@ -63,7 +63,11 @@ def main(path):
  
 if __name__=='__main__':
   # Command line interface
-  parser = argparse.ArgumentParser(description="Convert mrxs files to tiled tiff images")
-  parser.add_argument("--input", type=str, help="The directory containing the input mrxs files ",required=True)
-  args = parser.parse_args()
-  main(args.input)
+  try:
+      parser = argparse.ArgumentParser(description="Convert mrxs files to tiled tiff images")
+      parser.add_argument("--input", type=str, help="The directory containing the input mrxs files ",required=True)
+      args = parser.parse_args()
+      main(args.input)
+  except:
+      path=input("directory")
+      main(path)
