@@ -6,6 +6,7 @@ import ipdb
 
 def delete_spaces(directory):
     os.chdir(directory)
+    a=3
     path = os.getcwd()
     filenames = os.listdir(path)
     for filename in filenames:
