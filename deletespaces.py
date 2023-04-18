@@ -1,14 +1,15 @@
 #!/bin/python
 "Dependencies"
 import os
-import argparse 
+import argparse
+import ipdb
 
 def delete_spaces(directory):
     os.chdir(directory)
     path = os.getcwd()
     filenames = os.listdir(path)
     for filename in filenames:
-        print(filename)
+        ipdb.set_trace()
         os.rename(os.path.join(path,filename),os.path.join(path,filename.replace(' ','')))
         
 if __name__=="__main__":
