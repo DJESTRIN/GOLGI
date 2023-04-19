@@ -9,7 +9,6 @@ import ipdb
 def mrxstotiff(input_dir):
 
     # Define the input and output directories
-    input_dir = 'path/to/input/directory'
     output_dir = input_dir
 
     # Define the size of the tiles
