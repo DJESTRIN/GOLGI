@@ -42,8 +42,13 @@ def mrxstotiff(input_dir):
                     # Save the tile as a TIFF file
                     tile_filename = f'{os.path.splitext(filename)[0]}_{i}_{j}.tiff'
                     fulldrop_path=output_dir+'/'+filename[:-5]+'tiled_images/'
-                    ipdb.set_trace()
-                    os.mkdir(fulldrop_path,exist_ok=True)
+                    
+                    #Generate an output subfolder for tiles
+                    try:
+                        os.mkdir(fulldrop_path,exist_ok=True)
+                    except:
+                        nothing=1
+                    
                     tile.save(os.path.join(fulldrop_path,tile_filename), format='TIFF')
                     print(tile_filename)
         
