@@ -6,6 +6,7 @@ import numpy as np
 from PIL import Image
 import argparse
 import ipdb
+import tqdm
 
 def mrxstotiff(input_dir):
 
@@ -29,7 +30,7 @@ def mrxstotiff(input_dir):
             num_tiles_y = int(np.ceil(height / tile_size))
         
             # Loop through all the tiles and save them as individual images
-            for i in range(num_tiles_x):
+            for i in tqdm.tqdm(range(num_tiles_x)):
                 for j in range(num_tiles_y):
                     # Calculate the coordinates of the current tile
                     x = i * tile_size
@@ -42,8 +43,8 @@ def mrxstotiff(input_dir):
                     tile_filename = f'{os.path.splitext(filename)[0]}_{i}_{j}.tiff'
                     fulldrop_path=output_dir+filename[-6]+'tiled_images/'
                     os.mkdir(fulldrop_path)
-                    ipdb.set_trace()
                     tile.save(os.path.join(fulldrop_path,tile_filename), format='TIFF')
+                    print(tile_filename)
         
             # Close the slide file
             slide.close()
