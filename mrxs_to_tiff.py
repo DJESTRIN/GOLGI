@@ -50,7 +50,6 @@ def mrxstotiff(input_dir):
                         nothing=1
                     
                     tile.save(fulldrop, format='TIFF')
-                    print(tile_filename)
         
             # Close the slide file
             slide.close()
