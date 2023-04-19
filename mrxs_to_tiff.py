@@ -45,7 +45,7 @@ def mrxstotiff(input_dir):
                     fulldrop=fulldrop_path+tile_filename
                     #Generate an output subfolder for tiles
                     try:
-                        os.mkdir(fulldrop_path,exist_ok=True)
+                        os.mkdir(fulldrop_path)
                     except:
                         nothing=1
                     
