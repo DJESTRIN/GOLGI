@@ -6,6 +6,7 @@ import numpy as np
 from PIL import Image
 import argparse
 import ipdb
+
 def mrxstotiff(input_dir):
 
     # Define the input and output directories
@@ -19,7 +20,7 @@ def mrxstotiff(input_dir):
         if filename.endswith('.mrxs'):
             # Open the file using OpenSlide
             slide = openslide.open_slide(os.path.join(input_dir, filename))
-        
+            ipdb.set_trace()
             # Get the dimensions of the slide
             width, height = slide.dimensions
         
