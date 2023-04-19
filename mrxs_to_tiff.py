@@ -1,13 +1,16 @@
-
-def mrxstotiff:
-    import os
-    import openslide
-    import numpy as np
-    from PIL import Image
+#!/bin/python
+"Dependencies"
+import os
+import openslide
+import numpy as np
+from PIL import Image
+import argparse
+import ipdb
+def mrxstotiff(input_dir):
 
     # Define the input and output directories
     input_dir = 'path/to/input/directory'
-    output_dir = 'path/to/output/directory'
+    output_dir = input_dir
 
     # Define the size of the tiles
     tile_size = 500
@@ -41,3 +44,10 @@ def mrxstotiff:
         
             # Close the slide file
             slide.close()
+            
+if __name__=="__main__":
+ # Command line interface
+parser = argparse.ArgumentParser(description="Convert a .mrxs file to a 500 x 500 tile .TIFF file")
+parser.add_argument("--input", type=str, help="The directory containing the input mrxs files",required=True)
+args = parser.parse_args()
+mrxstotiff(args.input)
