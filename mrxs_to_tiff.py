@@ -36,12 +36,13 @@ def mrxstotiff(input_dir):
                     y = j * tile_size
                 
                     # Get the tile image
-                    ipdb.set_trace()
                     tile = slide.read_region((x, y), 0, (tile_size, tile_size))
                 
                     # Save the tile as a TIFF file
                     tile_filename = f'{os.path.splitext(filename)[0]}_{i}_{j}.tiff'
-                    tile.save(os.path.join(output_dir, tile_filename), format='TIFF')
+                    fulldrop_path=output_dir+filename[-6]+'/'+tile_filename
+                    ipdb.set_trace()
+                    tile.save(fulldrop_path, format='TIFF')
         
             # Close the slide file
             slide.close()
