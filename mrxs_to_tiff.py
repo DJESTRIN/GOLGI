@@ -20,7 +20,7 @@ def mrxstotiff(input_dir):
         if filename.endswith('.mrxs'):
             # Open the file using OpenSlide
             slide = openslide.open_slide(os.path.join(input_dir, filename))
-            ipdb.set_trace()
+            
             # Get the dimensions of the slide
             width, height = slide.dimensions
         
@@ -36,6 +36,7 @@ def mrxstotiff(input_dir):
                     y = j * tile_size
                 
                     # Get the tile image
+                    ipdb.set_trace()
                     tile = slide.read_region((x, y), 0, (tile_size, tile_size))
                 
                     # Save the tile as a TIFF file
