@@ -14,7 +14,7 @@ def mrxstotiff(input_dir):
     output_dir = input_dir
 
     # Define the size of the tiles
-    tile_size = 500
+    tile_size = 1000
 
     # Loop through all the .mrxs files in the input directory
     for filename in os.listdir(input_dir):
