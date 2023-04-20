@@ -58,5 +58,6 @@ if __name__=="__main__":
     # Command line interface
     parser = argparse.ArgumentParser(description="Convert a .mrxs file to a 500 x 500 tile .TIFF file")
     parser.add_argument("--input", type=str, help="The directory containing the input mrxs files",required=True)
+    #parser.add_argument("--output", type=str, help="The directory containing the output tiff files",required=False)
     args = parser.parse_args()
     mrxstotiff(args.input)
