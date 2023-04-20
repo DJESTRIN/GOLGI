@@ -38,6 +38,7 @@ def mrxstotiff(input_dir):
                 
                     # Get the tile image
                     tile = slide.read_region((x, y), 0, (tile_size, tile_size))
+                    tile=255-tile
                 
                     # Save the tile as a TIFF file
                     tile_filename = f'{os.path.splitext(filename)[0]}_{i}_{j}.tiff'
